@@ -4,6 +4,9 @@ class Library:
     books = []
     # List that keeps all books in our library (book is a dictionary)
 
+    filename_library = "library.txt"
+    #Our database for library
+
     def __int__(self):
         """Initialize Library class"""
 
@@ -52,18 +55,29 @@ class Library:
         """Select a book to do something with it in another function (for example borrow it)"""
 
         for book in self.books:
-            if book["id"] == book_id:
+            if book["book_id"] == book_id:
                 return book
 
     def show_book(self, book_id):
         """Show book based on its id"""
 
         print("********************")
-
         for book in self.books:
-            if book["id"] == book_id:
+            if book["book_id"] == book_id:
                 for value, key in book.items():
                     print(f"{key} - {value}")
         else:
             print("there is no such book in our library")
-        print("********************")
+        print("********************\n")
+
+    def save_library_books(self):
+        """Save books from our library to a file"""
+
+        with open (self.filename_library, "w") as f:
+            for book in self.books:
+                for key, value in book.items():
+                    f.write(f"{key} {value}\n")
+        f.close()
+
+    def load_library_books(self):
+        """Load books library had from a file"""

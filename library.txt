@@ -1,0 +1,4 @@
+book_id 2
+book_title BBB
+book_type fantasy
+number_of_pages 222

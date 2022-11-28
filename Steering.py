@@ -71,6 +71,8 @@ class Steering:
 
             elif selected_action == 7:
                 self.running = False
+                self.person.save_person_backpack()
+                self.library.save_library_books()
                 print("Goodbye.")
 
             else:
