@@ -17,6 +17,10 @@ class Library:
                 print(f"{key} - {value}")
             print("******************************\n")
 
+    def add_book_dict(self, book):
+        """Add book to library after person gave it back"""
+        self.books.append(book)
+
     def add_book(self):
         """Add book to our library"""
 
@@ -47,16 +51,19 @@ class Library:
     def select_book(self, book_id):
         """Select a book to do something with it in another function (for example borrow it)"""
 
-        return self.books[book_id]
+        for book in self.books:
+            if book["id"] == book_id:
+                return book
 
     def show_book(self, book_id):
         """Show book based on its id"""
 
         print("********************")
-        if self.books[book_id]["id"] == book_id:
-            for key, value in self.books[book_id].items():
-                print(f"{key} - {value}")
 
+        for book in self.books:
+            if book["id"] == book_id:
+                for value, key in book.items():
+                    print(f"{key} - {value}")
         else:
             print("there is no such book in our library")
         print("********************")

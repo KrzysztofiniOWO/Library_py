@@ -1,4 +1,5 @@
 import Library as Lib
+import Person as Per
 
 
 class Steering:
@@ -9,6 +10,9 @@ class Steering:
 
     library = Lib.Library()
     #Instance of Library class
+
+    person = Per.Person()
+    #Instance of Person class
 
     def __init__(self):
         """Initialize Steering class"""
@@ -25,7 +29,8 @@ class Steering:
         print("** 3 - Borrow a book from library   **")
         print("** 4 - Return a book to library     **")
         print("** 5 - Give away a book to library  **")
-        print("** 6 - Exit library                 **")
+        print("** 6 - List of books you borrowed   **")
+        print("** 7 - Exit library                 **")
         print("**                                  **")
         print("**************************************\n")
 
@@ -43,18 +48,28 @@ class Steering:
                 self.library.show_all_books()
 
             elif selected_action == 2:
-                print("b")
+                number = int(input("What is the id of a book you want to see?: "))
+                self.library.show_book(number)
 
             elif selected_action == 3:
-                print("c")
+                selected = self.library.select_book(int(input("What is the id of a book you want to borrow?: ")))
+                self.person.take_book(selected)
+                self.library.remove_book(selected)
 
             elif selected_action == 4:
-                print("d")
+                selected = self.person.give_book_back(int(input("What is the id of a book you want to give back?: ")))
+                self.library.add_book_dict(selected)
+
+            elif selected_action == 5:
+                self.library.add_book()
 
             elif selected_action == 5:
                 self.library.add_book()
 
             elif selected_action == 6:
+                self.person.show_person_books()
+
+            elif selected_action == 7:
                 self.running = False
                 print("Goodbye.")
 
