@@ -4,14 +4,8 @@ class Library:
     books = []
     # List that keeps all books in our library (book is a dictionary)
 
-    filename_library = "library.txt"
-    #Our database for library
-
     def __int__(self):
         """Initialize Library class"""
-
-    def load_library(self):
-        """Load books to our library from a save file"""
 
     def show_all_books(self):
         for book in self.books:
@@ -20,14 +14,18 @@ class Library:
                 print(f"{key} - {value}")
             print("******************************\n")
 
+    def return_number_of_books_in_library(self):
+        """Returns number of books in library"""
+
+        return len(self.books)
+
     def add_book_dict(self, book):
         """Add book to library after person gave it back"""
         self.books.append(book)
 
-    def add_book(self):
+    def add_book(self, id_book):
         """Add book to our library"""
 
-        id_book = (len(self.books) + 1)
         title_book = input("What is the title of book you want to add?: ")
         type_book = Library.select_type(self)
         number_pages = int(input("What is the number of pages of your book?: "))
@@ -70,14 +68,13 @@ class Library:
             print("there is no such book in our library")
         print("********************\n")
 
-    def save_library_books(self):
-        """Save books from our library to a file"""
+    def return_state_of_library(self):
+        """Return list of books we have in library used while saving state of project"""
 
-        with open (self.filename_library, "w") as f:
-            for book in self.books:
-                for key, value in book.items():
-                    f.write(f"{key} {value}\n")
-        f.close()
+        return self.books
 
-    def load_library_books(self):
-        """Load books library had from a file"""
+    def load_state_of_library(self, list_of_books):
+        """Load books to library from our database"""
+
+        for book in list_of_books:
+            self.books.append(book)

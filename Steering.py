@@ -1,5 +1,6 @@
 import Library as Lib
 import Person as Per
+import Save as Sav
 
 
 class Steering:
@@ -14,6 +15,9 @@ class Steering:
     person = Per.Person()
     #Instance of Person class
 
+    save = Sav.Save()
+    #Instance of save class
+
     def __init__(self):
         """Initialize Steering class"""
 
@@ -24,7 +28,7 @@ class Steering:
         print("**     Welcome to our library       **")
         print("**   What would you like to do?     **")
         print("**                                  **")
-        print("** 1 - Show all books               **")
+        print("** 1 - Show library books           **")
         print("** 2 - Show book with certain id    **")
         print("** 3 - Borrow a book from library   **")
         print("** 4 - Return a book to library     **")
@@ -40,6 +44,9 @@ class Steering:
 
     def steer_library(self):
         """Control our project's behaviour using functions from Library and Person"""
+
+        self.person.load_state_of_backpack(self.save.load_person_backpack())
+        self.library.load_state_of_library(self.save.load_library_books())
 
         while self.running:
             selected_action = self.ask_action()
@@ -61,18 +68,16 @@ class Steering:
                 self.library.add_book_dict(selected)
 
             elif selected_action == 5:
-                self.library.add_book()
-
-            elif selected_action == 5:
-                self.library.add_book()
+                self.library.add_book(self.library.return_number_of_books_in_library() +
+                                      self.person.return_number_of_books_in_backpack() + 1)
 
             elif selected_action == 6:
                 self.person.show_person_books()
 
             elif selected_action == 7:
                 self.running = False
-                self.person.save_person_backpack()
-                self.library.save_library_books()
+                self.save.save_person_backpack(self.person.return_state_of_backpack())
+                self.save.save_library_books(self.library.return_state_of_library())
                 print("Goodbye.")
 
             else:

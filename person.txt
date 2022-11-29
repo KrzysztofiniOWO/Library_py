@@ -1,4 +1,4 @@
-book_id 1
-book_title AAA
-book_type action
-number_of_pages 111
+book_id 2
+book_title bbb
+book_type fantasy
+number_of_pages 222

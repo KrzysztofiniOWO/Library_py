@@ -4,9 +4,6 @@ class Person:
     backpack = []
     #Backpack to keep books in person's inventory
 
-    filename_person = "person.txt"
-    #Our database for person
-
     def __init__(self):
         """Initialize person class"""
 
@@ -18,6 +15,11 @@ class Person:
             for key, value in book.items():
                 print(f"{key} - {value}")
             print("********************\n")
+
+    def return_number_of_books_in_backpack(self):
+        """Returns number of books in backpack"""
+
+        return len(self.backpack)
 
     def take_book(self, book):
         """Put book in our backpack after taking it from library"""
@@ -33,15 +35,13 @@ class Person:
                 self.backpack.remove(book)
                 return result
 
-    def save_person_backpack(self):
-        """Save books person has in backpack to a file"""
+    def return_state_of_backpack(self):
+        """Return list of books we have in backpack used while saving state of project"""
 
-        with open(self.filename_person, "w") as f:
-            for book in self.backpack:
-                for key, value in book.items():
-                    f.write(f"{key} {value}\n")
-        f.close()
+        return self.backpack
 
+    def load_state_of_backpack(self, list_of_books):
+        """Load books to library from our database"""
 
-    def load_person_backpack(self):
-        """Load books person had in backpack from a file"""
+        for book in list_of_books:
+            self.backpack.append(book)

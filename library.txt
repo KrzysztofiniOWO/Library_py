@@ -1,4 +1,12 @@
-book_id 2
-book_title BBB
-book_type fantasy
-number_of_pages 222
+book_id 1
+book_title aaa
+book_type action
+number_of_pages 111
+book_id 3
+book_title ccc
+book_type thriller
+number_of_pages 333
+book_id 4
+book_title ddd
+book_type horror
+number_of_pages 444
